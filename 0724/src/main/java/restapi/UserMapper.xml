@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="restapi.UserMapper">
+
+    <insert id="insertUser" parameterType="restapi.User">
+        INSERT INTO users (
+            id, name, username, email, phone, website,
+            company_name, catch_phrase, bs,
+            street, suite, city, zipcode,
+            lat, lng
+        )
+        VALUES (
+            #{id}, #{name}, #{username}, #{email}, #{phone}, #{website},
+            #{company.name, jdbcType=VARCHAR}, #{company.catchPhrase, jdbcType=VARCHAR}, #{company.bs, jdbcType=VARCHAR},
+            #{address.street, jdbcType=VARCHAR}, #{address.suite, jdbcType=VARCHAR}, #{address.city, jdbcType=VARCHAR}, #{address.zipcode, jdbcType=VARCHAR},
+            #{address.geo.lat, jdbcType=VARCHAR}, #{address.geo.lng, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <select id="selectAllUsers" resultType="restapi.User">
+        SELECT * FROM users
+    </select>
+
+</mapper>
